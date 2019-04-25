@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SendRESTRequest</string>
+    <string name="test_button">TEST</string>
+</resources>
