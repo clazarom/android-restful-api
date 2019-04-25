@@ -24,8 +24,9 @@ public class RestClient {
     //Retrofit fields
     Retrofit retrofit;
     ApiInterface restAPI;
-    static final String BASE_URL = "https://git.eclipse.org/r/";
-    static final String API_KEY = "xyzHGgsgffsdhfdvc";
+    static final String BASE_URL = "https://4c1af628-6ce8-4e68-aa4b-fcf6bab5042f.mock.pstmn.io";
+    static final String API_KEY = "11223344";
+    static fianl String TOKEN_ID = "andfoidnnva7g7uad7gcuiasd0239u9";
 
     //Manage disposables
     CompositeDisposable compositeDisposable;
@@ -49,8 +50,8 @@ public class RestClient {
     public boolean getUserDebug(int user){
         //Rest request
         //Single observer:
-        Single<UserCredentials> userCredentials = restAPI.getUserDebug(user, API_KEY);
-        userCredentials
+        Single<UserCredentials> userReq = restAPI.getUserDebug(user, API_KEY);
+        userReq
                 .subscribeOn(Schedulers.io()) //do all work on bakcground (io)
                 .observeOn(AndroidSchedulers.mainThread()) //onSuccess and onError are called on the main thread
                 .subscribe(new SingleObserver<UserCredentials>(){
@@ -61,7 +62,8 @@ public class RestClient {
 
                     @Override
                     public void onSuccess(UserCredentials user) {
-                        Log.d(TAG, "Request success");
+
+                        Log.d(TAG, "Request success: "+user.getUserID());
                     }
 
                     @Override

@@ -8,6 +8,11 @@
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 .DS_Store
-/build
 /captures
 .externalNativeBuild
+#Other Android build directories
+/app/build
+build.xml
+local.properties
+bin/
+gen/
