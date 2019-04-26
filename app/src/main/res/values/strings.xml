@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">SendRESTRequest</string>
+    <!-- activity_main layout strings -->
+    <string name="title_text">GET USER CREDENTIALS INFORMATION</string>
     <string name="test_button">TEST</string>
+    <string name="retrieve_button">Get User Data </string>
 </resources>

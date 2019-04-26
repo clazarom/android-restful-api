@@ -24,9 +24,9 @@ public class RestClient {
     //Retrofit fields
     Retrofit retrofit;
     ApiInterface restAPI;
-    static final String BASE_URL = "https://4c1af628-6ce8-4e68-aa4b-fcf6bab5042f.mock.pstmn.io";
+    static final String BASE_URL = "https://9b844c2b-5d0b-4de5-a662-ebe43d461676.mock.pstmn.io";
     static final String API_KEY = "11223344";
-    static fianl String TOKEN_ID = "andfoidnnva7g7uad7gcuiasd0239u9";
+    static final String TOKEN_ID = "andfoidnnva7g7uad7gcuiasd0239u9";
 
     //Manage disposables
     CompositeDisposable compositeDisposable;
@@ -73,6 +73,34 @@ public class RestClient {
                     }
                 }) ;
 
+        return true;
+    }
+
+    public boolean retrieveUserInServer(){
+        Single<Boolean> userCredentials = restAPI.isUserSet(API_KEY);
+        UserCredentials user = new UserCredentials();
+        user.setTokenID(TOKEN_ID);
+
+        //Call server API
+        userCredentials.subscribeOn(Schedulers.io()) //do all work on bakcground (io)
+                .observeOn(AndroidSchedulers.mainThread()) //onSuccess and onError are called on the main thread
+                .subscribe(new SingleObserver<Boolean>(){
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        compositeDisposable.add(d);
+                    }
+
+                    @Override
+                    public void onSuccess(Boolean userSet) {
+                        Log.d(TAG, "Request success: "+userSet);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "Request error: "+e);
+
+                    }
+                }) ;
         return true;
     }
 

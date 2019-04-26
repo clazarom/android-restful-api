@@ -16,3 +16,5 @@ build.xml
 local.properties
 bin/
 gen/
+build/
+generated/

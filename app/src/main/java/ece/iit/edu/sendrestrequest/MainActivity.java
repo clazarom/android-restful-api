@@ -22,12 +22,19 @@ public class MainActivity extends AppCompatActivity {
 
         client = new RestClient();
 
+        //Test button
         findViewById(R.id.testButton).setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
                 client.getUserDebug(0);
             }
+        });
+
+        //Get UserCredentials button
+        findViewById(R.id.retrieveUserButton).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){client.retrieveUserInServer();}
         });
 
     }

@@ -15,4 +15,10 @@ public interface ApiInterface {
     Single<UserCredentials> getUserDebug(
             @Path("user_n") int n,
             @Query("api_key") String apiKey);
+
+    //Check if user in in the server
+    @GET("user_credentials")
+    Single<Boolean> isUserSet(
+            @Query("api_key") String apiKey);
+
 }

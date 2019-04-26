@@ -738,6 +738,8 @@ id percent
 id progress_circular
 id progress_horizontal
 id radio
+id retrieveUserButton
+id retrieve_layout
 id right
 id right_icon
 id right_side
@@ -776,6 +778,7 @@ id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
 id testButton
+id test_layout
 id text
 id text2
 id textSpacerNoButtons
@@ -878,9 +881,11 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string app_name
+string retrieve_button
 string search_menu_title
 string status_bar_notification_info_overflow
 string test_button
+string title_text
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
