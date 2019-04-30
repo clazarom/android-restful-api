@@ -1,4 +1,4 @@
-package ece.iit.edu.sendrestrequest;
+package ece.iit.edu.sendrestrequest.REST_API;
 
 import android.app.Activity;
 import android.util.Log;
@@ -6,12 +6,16 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.IOException;
+
+import ece.iit.edu.sendrestrequest.MainActivity;
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -27,7 +31,7 @@ public class RestClient {
     ApiInterface restAPI;
     static final String BASE_URL = "{ENTER_YOUR_URL}";
     static final String API_KEY = "11223344";
-    static final String TOKEN_ID = "andfoidnnva7g7uad7gcuiasd0239u9";
+    public static final String TOKEN_ID = "andfoidnnva7g7uad7gcuiasd0239u9";
 
     //Manage disposables
     CompositeDisposable compositeDisposable;
@@ -57,8 +61,8 @@ public class RestClient {
         //Rest request
         //Single observer:
         Single<UserCredentials> userReq = restAPI.getUserDebug(user, API_KEY);
-        userReq
-                .subscribeOn(Schedulers.io()) //do all work on bakcground (io)
+            //Call REST API
+            userReq.subscribeOn(Schedulers.io()) //do all work on background (io)
                 .observeOn(AndroidSchedulers.mainThread()) //onSuccess and onError are called on the main thread
                 .subscribe(new SingleObserver<UserCredentials>(){
                     @Override
@@ -87,26 +91,35 @@ public class RestClient {
                     }
                 }) ;
 
+
         return true;
     }
 
-    public boolean retrieveUserInServer(){
-        Single<Boolean> userCredentials = restAPI.isUserSet(API_KEY);
+    public boolean requestUserInServer(String tokenID){
+        UserCredentialsRequest request = new UserCredentialsRequest(tokenID);
+        Call<Single<UserCredentialsResponse>> userReqCall = restAPI.requestUser(API_KEY, request);
         UserCredentials user = new UserCredentials();
-        user.setTokenID(TOKEN_ID);
 
-        //Call server API
-        userCredentials.subscribeOn(Schedulers.io()) //do all work on bakcground (io)
+        try {
+            Single<UserCredentialsResponse> userCredentials = userReqCall.execute().body();
+            //Call server API
+            userCredentials.subscribeOn(Schedulers.io()) //do all work on bakcground (io)
                 .observeOn(AndroidSchedulers.mainThread()) //onSuccess and onError are called on the main thread
-                .subscribe(new SingleObserver<Boolean>(){
+                .subscribe(new SingleObserver<UserCredentialsResponse>(){
                     @Override
                     public void onSubscribe(Disposable d) {
                         compositeDisposable.add(d);
                     }
 
                     @Override
-                    public void onSuccess(Boolean userSet) {
-                        Log.d(TAG, "Request success: "+userSet);
+                    public void onSuccess(UserCredentialsResponse user) {
+                        Log.d(TAG, "Request success: "+user.getResponse());
+                        if (user.getResponse()){
+                            //There is a user in the system! we can get the data now
+
+                        } else{
+                            //There is no existent User, we will have to send the user credentials
+                        }
                     }
 
                     @Override
@@ -115,6 +128,9 @@ public class RestClient {
 
                     }
                 }) ;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return true;
     }
 

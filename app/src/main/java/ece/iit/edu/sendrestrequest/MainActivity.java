@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
+import ece.iit.edu.sendrestrequest.REST_API.RestClient;
 
 //Retrofit example project:
 // https://square.github.io/retrofit/
@@ -39,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         //Get UserCredentials button
         findViewById(R.id.retrieveUserButton).setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){client.retrieveUserInServer();}
+            public void onClick(View view){client.requestUserInServer(RestClient.TOKEN_ID);}
         });
 
     }

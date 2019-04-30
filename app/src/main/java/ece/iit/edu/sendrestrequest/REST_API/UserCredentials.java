@@ -1,4 +1,4 @@
-package ece.iit.edu.sendrestrequest;
+package ece.iit.edu.sendrestrequest.REST_API;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

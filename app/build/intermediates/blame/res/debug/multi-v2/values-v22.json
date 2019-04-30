@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Documents\\GitHub\\android-restful-api\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v22\\values-v22.xml",
+            "outputFile": "C:\\Users\\Caterina\\Documents\\GitHub\\android-restful-api\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v22\\values-v22.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\keita\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\78984654d0cab339c0124b40231e6003\\res\\values-v22\\values-v22.xml",
+                    "source": "C:\\Users\\Caterina\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\98db6449fb0a9deb2977038c47ccf7f1\\res\\values-v22\\values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",

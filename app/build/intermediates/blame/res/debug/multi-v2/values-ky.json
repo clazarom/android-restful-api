@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Documents\\GitHub\\android-restful-api\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ky\\values-ky.xml",
+            "outputFile": "C:\\Users\\Caterina\\Documents\\GitHub\\android-restful-api\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ky\\values-ky.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\keita\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\af03d866c8a3738085c8d4900a119b88\\res\\values-ky\\values-ky.xml",
+                    "source": "C:\\Users\\Caterina\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\4e3b405d5507197124234e0c0bdd1931\\res\\values-ky\\values-ky.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\keita\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\78984654d0cab339c0124b40231e6003\\res\\values-ky\\values-ky.xml",
+                    "source": "C:\\Users\\Caterina\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\98db6449fb0a9deb2977038c47ccf7f1\\res\\values-ky\\values-ky.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
