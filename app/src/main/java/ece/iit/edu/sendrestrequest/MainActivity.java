@@ -3,6 +3,7 @@ package ece.iit.edu.sendrestrequest;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -15,14 +16,18 @@ public class MainActivity extends AppCompatActivity {
 
     RestClient client;
 
+    //Results
+    public static TextView user0ID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        client = new RestClient();
+        client = new RestClient(this);
 
-        //Test button
+        //Test user 0
+        user0ID= findViewById(R.id.user0_userid);
         findViewById(R.id.testButton).setOnClickListener(new View.OnClickListener(){
 
             @Override

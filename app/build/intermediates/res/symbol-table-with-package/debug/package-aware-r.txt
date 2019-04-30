@@ -521,6 +521,7 @@ dimen hint_alpha_material_dark
 dimen hint_alpha_material_light
 dimen hint_pressed_alpha_material_dark
 dimen hint_pressed_alpha_material_light
+dimen label_height
 dimen notification_action_icon_size
 dimen notification_action_text_size
 dimen notification_big_circle_margin
@@ -792,6 +793,7 @@ id topPanel
 id uniform
 id up
 id useLogo
+id user0_userid
 id withText
 id wrap
 id wrap_content

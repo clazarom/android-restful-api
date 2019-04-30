@@ -1,5 +1,6 @@
 package ece.iit.edu.sendrestrequest;
 
+import android.app.Activity;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -24,14 +25,19 @@ public class RestClient {
     //Retrofit fields
     Retrofit retrofit;
     ApiInterface restAPI;
-    static final String BASE_URL = "https://9b844c2b-5d0b-4de5-a662-ebe43d461676.mock.pstmn.io";
+    static final String BASE_URL = "{ENTER_YOUR_URL}";
     static final String API_KEY = "11223344";
     static final String TOKEN_ID = "andfoidnnva7g7uad7gcuiasd0239u9";
 
     //Manage disposables
     CompositeDisposable compositeDisposable;
 
-    public RestClient(){
+    //UI reference
+    Activity activity;
+
+    public RestClient(Activity activity){
+        //UI reference
+        this.activity = activity;
         //Initialize retrofit
         Gson gson = new GsonBuilder()
                 .setLenient()
@@ -62,8 +68,16 @@ public class RestClient {
 
                     @Override
                     public void onSuccess(UserCredentials user) {
-
                         Log.d(TAG, "Request success: "+user.getUserID());
+                        final UserCredentials successfulUser = user;
+                        //Update UI
+                        activity.runOnUiThread(new Runnable(){
+                            @Override
+                            public void run() {
+                                MainActivity.user0ID.setText(successfulUser.getUserID());
+                            }
+                        });
+
                     }
 
                     @Override
