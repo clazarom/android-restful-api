@@ -18,7 +18,7 @@ import retrofit2.http.Query;
  */
 public interface ApiInterface {
 
-    //SYNCHRONOUS CALLS:
+    //ASYNCHRONOUS CALLS:
     //{{base_urle}}/user/{n}?api_key=<<api_key>>&language=en-US
     @GET("user/{user_n}")
     Single<UserCredentials> getUserDebug(
@@ -27,8 +27,8 @@ public interface ApiInterface {
 
     //Check if user in in the server
     //{{base_urle}}/?api_key=<<api_key>>&language=en-US
-    @GET("user_credentials")
-    Call<Single<UserCredentialsResponse>> requestUser(
+    @POST ("user_credentials")
+    Single<UserCredentialsResponse> requestUser(
             @Query("api_key") String apiKey,
             @Body UserCredentialsRequest userRequest);
 }

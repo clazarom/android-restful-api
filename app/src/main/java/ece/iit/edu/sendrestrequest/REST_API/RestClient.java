@@ -29,7 +29,7 @@ public class RestClient {
     //Retrofit fields
     Retrofit retrofit;
     ApiInterface restAPI;
-    static final String BASE_URL = "{ENTER_YOUR_URL}";
+    static final String BASE_URL = "{YOUR_URL}"; //TODO add your url
     static final String API_KEY = "11223344";
     public static final String TOKEN_ID = "andfoidnnva7g7uad7gcuiasd0239u9";
 
@@ -97,40 +97,36 @@ public class RestClient {
 
     public boolean requestUserInServer(String tokenID){
         UserCredentialsRequest request = new UserCredentialsRequest(tokenID);
-        Call<Single<UserCredentialsResponse>> userReqCall = restAPI.requestUser(API_KEY, request);
+        Single<UserCredentialsResponse> userCredentials = restAPI.requestUser(API_KEY, request);
         UserCredentials user = new UserCredentials();
 
-        try {
-            Single<UserCredentialsResponse> userCredentials = userReqCall.execute().body();
-            //Call server API
-            userCredentials.subscribeOn(Schedulers.io()) //do all work on bakcground (io)
-                .observeOn(AndroidSchedulers.mainThread()) //onSuccess and onError are called on the main thread
-                .subscribe(new SingleObserver<UserCredentialsResponse>(){
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        compositeDisposable.add(d);
+        //Call server API
+        userCredentials.subscribeOn(Schedulers.io()) //do all work on background (io)
+            .observeOn(AndroidSchedulers.mainThread()) //onSuccess and onError are called on the main thread
+            .subscribe(new SingleObserver<UserCredentialsResponse>(){
+                @Override
+                public void onSubscribe(Disposable d) {
+                    compositeDisposable.add(d);
+                }
+
+                @Override
+                public void onSuccess(UserCredentialsResponse user) {
+                    Log.d(TAG, "Request success: "+user.getResponse());
+                    if (user.getResponse()){
+                        //There is a user in the system! we can get the data now
+
+                    } else{
+                        //There is no existent User, we will have to send the user credentials
                     }
+                }
 
-                    @Override
-                    public void onSuccess(UserCredentialsResponse user) {
-                        Log.d(TAG, "Request success: "+user.getResponse());
-                        if (user.getResponse()){
-                            //There is a user in the system! we can get the data now
+                @Override
+                public void onError(Throwable e) {
+                    Log.d(TAG, "Request error: "+e);
 
-                        } else{
-                            //There is no existent User, we will have to send the user credentials
-                        }
-                    }
+                }
+            }) ;
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "Request error: "+e);
-
-                    }
-                }) ;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return true;
     }
 
