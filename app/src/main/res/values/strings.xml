@@ -4,4 +4,6 @@
     <string name="title_text">GET USER CREDENTIALS INFORMATION</string>
     <string name="test_button">TEST USER 0</string>
     <string name="retrieve_button">Get User Data </string>
+    <string name="loginjwt_button">Login JWT </string>
+
 </resources>

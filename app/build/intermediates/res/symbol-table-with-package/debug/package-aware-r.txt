@@ -723,6 +723,8 @@ id line1
 id line3
 id listMode
 id list_item
+id loginJWTButton
+id loginjwt_layout
 id message
 id middle
 id multiply
@@ -883,6 +885,7 @@ string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string app_name
+string loginjwt_button
 string retrieve_button
 string search_menu_title
 string status_bar_notification_info_overflow

@@ -10,7 +10,7 @@ import ece.iit.edu.sendrestrequest.REST_API.RestClient;
 //Retrofit example project:
 // https://square.github.io/retrofit/
 // https://android.jlelse.eu/rest-api-on-android-made-simple-or-how-i-learned-to-stop-worrying-and-love-the-rxjava-b3c2c949cad4
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     RestClient client;
 
@@ -26,19 +26,13 @@ public class MainActivity extends AppCompatActivity {
 
         //Test user 0
         user0ID= findViewById(R.id.user0_userid);
-        findViewById(R.id.testButton).setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                client.getUserDebug(0);
-            }
-        });
+        findViewById(R.id.testButton).setOnClickListener(this);
 
         //Get UserCredentials button
-        findViewById(R.id.retrieveUserButton).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){client.requestUserInServer(RestClient.TOKEN_ID);}
-        });
+        findViewById(R.id.retrieveUserButton).setOnClickListener(this);
+
+        //Login with JWT
+        findViewById(R.id.loginJWTButton).setOnClickListener(this);
 
     }
 
@@ -47,5 +41,22 @@ public class MainActivity extends AppCompatActivity {
         client.destroyDisposables();
 
         super.onDestroy();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.testButton:
+                client.getUserDebug(0);
+                break;
+
+            case R.id.retrieveUserButton:
+                client.requestUserInServer(RestClient.TOKEN_ID);
+                break;
+
+            case R.id.loginJWTButton:
+                break;
+        }
+
     }
 }
