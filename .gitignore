@@ -45,6 +45,8 @@ local.properties
 bin/
 gen/
 generated/
+app/build/generated
 
 # Secret info
 apikeys.properties
+BuildConfig.java

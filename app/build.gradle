@@ -9,7 +9,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "ece.iit.edu.sendrestrequest"
-        minSdkVersion 24
+        minSdkVersion 26
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -41,7 +41,15 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.1.13'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
 
-    //JWT
-    // https://mvnrepository.com/artifact/com.auth0/java-jwt --- group: 'com.auth0', name: 'java-jwt', version: '3.3.1'
-    implementation 'com.auth0:java-jwt:3.8.0'
+    //JWT - JJWT
+    //https://github.com/jwtk/jjwt
+    api 'io.jsonwebtoken:jjwt-api:0.10.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.5'
+    runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.10.5') {
+        exclude group: 'org.json', module: 'json' //provided by Android natively
+    }
+    // Uncomment the next line if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
+    //runtimeOnly 'org.bouncycastle:bcprov-jdk15on:1.60'
+
+
 }

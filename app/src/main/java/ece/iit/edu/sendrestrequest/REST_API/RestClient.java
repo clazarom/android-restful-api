@@ -29,15 +29,17 @@ public class RestClient {
     //Retrofit fields
     Retrofit retrofit;
     ApiInterface restAPI;
-    static final String BASE_URL = "{YOUR_URL}"; //TODO add your url
+    static final String BASE_URL = "http://google.com"; //TODO add your url
     static final String API_KEY = "11223344";
-    public static final String TOKEN_ID = "andfoidnnva7g7uad7gcuiasd0239u9";
-
+    public static final String TOKEN_ID="aadsfaewubfuadiubfasdufbaudsfgbadusfybudfgbv";
     //Manage disposables
     CompositeDisposable compositeDisposable;
 
     //UI reference
     Activity activity;
+
+    //Encrypt: JWT;
+    JWTEncoder jwtEncoder;
 
     public RestClient(Activity activity){
         //UI reference
@@ -55,6 +57,9 @@ public class RestClient {
         //API Interface
         restAPI = retrofit.create(ApiInterface.class);
         compositeDisposable = new CompositeDisposable();
+
+        //JWT
+        jwtEncoder = new JWTEncoder();
     }
 
     public boolean getUserDebug(int user){
@@ -128,6 +133,11 @@ public class RestClient {
             }) ;
 
         return true;
+    }
+
+    public void testJWT(){
+        String encoded = jwtEncoder.createASignedToken("1234", "user@emai.com", "{data1:22, data3:3}");
+        String decoded = jwtEncoder.verifyAToken(encoded);
     }
 
     public void destroyDisposables(){
