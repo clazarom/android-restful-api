@@ -45,3 +45,6 @@ local.properties
 bin/
 gen/
 generated/
+
+# Secret info
+apikeys.properties
