@@ -29,7 +29,8 @@ public class RestClient {
     //Retrofit fields
     Retrofit retrofit;
     ApiInterface restAPI;
-    static final String BASE_URL = "http://google.com"; //TODO add your url
+    static final String BASE_URL = "https://www.google.com" ; //TODO add your url
+
     static final String API_KEY = "11223344";
     public static final String TOKEN_ID="aadsfaewubfuadiubfasdufbaudsfgbadusfybudfgbv";
     //Manage disposables
@@ -41,17 +42,25 @@ public class RestClient {
     //Encrypt: JWT;
     JWTEncoder jwtEncoder;
 
+    //HTTPS
+    HttpsClientManager httpsClientManager;
+
     public RestClient(Activity activity){
         //UI reference
         this.activity = activity;
+
+        //HTTPS
+        httpsClientManager = new HttpsClientManager();
         //Initialize retrofit
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
+
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(httpsClientManager.getOkHttpClient())
                 .build();
 
         //API Interface
